@@ -69,6 +69,11 @@ public class Cliente extends Pessoa{
     public void setStatus(char status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "id=" + id + ", idade=" + idade + ", dataCadastro=" + dataCadastro + ", status=" + status + '}';
+    }
 }
 
     

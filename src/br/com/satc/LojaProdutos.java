@@ -26,25 +26,18 @@ public class LojaProdutos {
      */
     public static void main(String[] args) throws ParseException {
         // TODO code application logic here
- JOptionPane.showInputDialog("Mostre a lista de sapatos");
    ArrayList<Produtos> produtos = new ArrayList<>();
    
-   
+      
        int escMenu=0;
        int rgCLiente = 0;
        ArrayList<Cliente>cadastrarCliente =new ArrayList();
        ArrayList<Venda>cadastrarVenda = new ArrayList<>();
        ArrayList<Produtos>cadastrarProduto= new ArrayList<>();
        
-        for (LojaSapato loja : LojaSapato.values()) {
-             loja.add(new Produtos(loja.getNome(), loja.getDescricao(), loja.getStatus(), loja.getValor(), loja.getId()));     
-        }
-        
-        for (Menu menu : Menu.values()) {
-            
-        }
-          
-       
+      for(LojaSapato p : LojaSapato.values()){
+           cadastrarProduto.add(new Produtos(p.getNome(),p.getDescricao(), p.getStatus(), p.getId()));
+                } 
        do{
            escMenu=Integer.parseInt(JOptionPane.showInputDialog("escolha uma das opiçoes \n"
             +"1.CadastrarCliente\n"
@@ -62,7 +55,6 @@ public class LojaProdutos {
                    int rgCliente = Integer.parseInt(JOptionPane.showInputDialog("Qual o rg? "));
                     int cpfCliente = Integer.parseInt(JOptionPane.showInputDialog("Qual o cpf? "));
                    int id = Integer.parseInt(JOptionPane.showInputDialog("Qual o id? "));
-                   int idade =Integer.parseInt(JOptionPane.showInputDialog("Status"));
                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                    Date dataNascimento = sdf.parse(JOptionPane.showInputDialog("Informe a data de nascimento"));
                    Date dataCadastro = sdf.parse(JOptionPane.showInputDialog("Informe a data do cadastro")); 
@@ -78,7 +70,7 @@ public class LojaProdutos {
          char status = JOptionPane.showInputDialog("Qual o status?").charAt(0);
          float valor = Float.parseFloat(JOptionPane.showInputDialog("Qual o valor total a pagar?"));
          int idProduto =Integer.parseInt(JOptionPane.showInputDialog("Informe o id do produto"));
-         cadastrarProduto.add(new Produtos(nomeProduto, descricao, status,valor, idProduto));
+         cadastrarProduto.add(new Produtos(nomeProduto, descricao, status, idProduto));
         }while((JOptionPane.showConfirmDialog(null, "Desja continuar?"))==0);
                break;
            }
@@ -89,8 +81,7 @@ public class LojaProdutos {
         char status = JOptionPane.showInputDialog("Qual o status?").charAt(0);
         String listProdutos =JOptionPane.showInputDialog("Informe a lista de produtos");
         float totalPagar = Float.parseFloat(JOptionPane.showInputDialog("Qual o total a pagar?"));
-        int idVenda =Integer.parseInt(JOptionPane.showInputDialog("Informe o id da vDialog(\"Qual o total a pagar?\"));\n" +
-"       enda"));
+        int idVenda =Integer.parseInt(JOptionPane.showInputDialog("Informe o id da vDialog(\"Qual o total a pagar?\"));\n" +"venda"));
         cadastrarVenda.add(new Venda(cliente, status, listProdutos, totalPagar,idVenda));
         }while((JOptionPane.showConfirmDialog(null, "Desja continuar?"))==0);
                break;
@@ -99,8 +90,7 @@ public class LojaProdutos {
              case 4: {
              String opcao = JOptionPane.showInputDialog("Qual opção voce deseja?");   
              int consultarCliente = Integer.parseInt(JOptionPane.showInputDialog("Qual cliente voce quer consultar ? "));  
-             cadastrarCliente.get(consultarCliente);
-             JOptionPane.showMessageDialog(null, cadastrarCliente.toString());     
+             JOptionPane.showMessageDialog(null, cadastrarCliente.get(consultarCliente).toString());     
              break;
                  }
               case 5: {
@@ -116,23 +106,7 @@ public class LojaProdutos {
               } 
       }
        }while(escMenu!=7);
-       
-       String produto = "";
-   for(LojaSapato p : LojaSapato.values()){
-       produto += p.toString();
-   }
-   String escolha = JOptionPane.showInputDialog(produto);
-   String valorEscolha;
-   
-   for(LojaSapato p : LojaSapato.values()){
-       if( p.getNome().toUpperCase().contains(escolha.toUpperCase())){
-    JOptionPane.showMessageDialog(null,"Você escolheu o sapato: " + p.toString());
-  
-   
-       }  
-       
-       
 
-       }   
+   
     }
 }
