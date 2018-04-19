@@ -5,8 +5,8 @@
  */
 package br.com.satc;
 import br.com.satc.enums.LojaSapato;
-import br.com.satc.enums.Menu;
 import br.com.satc.objeto.Cliente;
+import br.com.satc.objeto.Pessoa;
 import br.com.satc.objeto.Produtos;
 import br.com.satc.objeto.Venda;
 import java.text.ParseException;
@@ -29,21 +29,25 @@ public class LojaProdutos {
  JOptionPane.showInputDialog("Mostre a lista de sapatos");
    ArrayList<Produtos> produtos = new ArrayList<>();
    
+   String produto = "";
+   for(LojaSapato p : LojaSapato.values()){
+       produto += p.toString();
+   }
+   String escolha = JOptionPane.showInputDialog(produto);
+   String valorEscolha;
    
+   for(LojaSapato p : LojaSapato.values()){
+       if( p.getNome().toUpperCase().contains(escolha.toUpperCase())){
+    JOptionPane.showMessageDialog(null,"Você escolheu o sapato: " + p.toString());
+   p.add(new Produtos(p.getNome(), p.getDescricao(), p.getStatus(), p.getValor(), p.getId()));
+   
+ 
+       }
+   }
        int escMenu=0;
-       int rgCLiente = 0;
        ArrayList<Cliente>cadastrarCliente =new ArrayList();
        ArrayList<Venda>cadastrarVenda = new ArrayList<>();
        ArrayList<Produtos>cadastrarProduto= new ArrayList<>();
-       
-        for (LojaSapato loja : LojaSapato.values()) {
-             loja.add(new Produtos(loja.getNome(), loja.getDescricao(), loja.getStatus(), loja.getValor(), loja.getId()));     
-        }
-        
-        for (Menu menu : Menu.values()) {
-            
-        }
-          
        
        do{
            escMenu=Integer.parseInt(JOptionPane.showInputDialog("escolha uma das opiçoes \n"
@@ -59,7 +63,7 @@ public class LojaProdutos {
            case 1 :{
                do{
                    String nomeCliente=JOptionPane.showInputDialog("Informe o nome do cliente ");
-                   int rgCliente = Integer.parseInt(JOptionPane.showInputDialog("Qual o rg? "));
+                   int rgCliente = Integer.parseInt(JOptionPane.showInputDialog("Qual o id? "));
                     int cpfCliente = Integer.parseInt(JOptionPane.showInputDialog("Qual o cpf? "));
                    int id = Integer.parseInt(JOptionPane.showInputDialog("Qual o id? "));
                    int idade =Integer.parseInt(JOptionPane.showInputDialog("Status"));
@@ -97,7 +101,9 @@ public class LojaProdutos {
            }
            
              case 4: {
-             String opcao = JOptionPane.showInputDialog("Qual opção voce deseja?");   
+               String opcao = JOptionPane.showInputDialog("Qual opção voce deseja?");
+               
+                 
              int consultarCliente = Integer.parseInt(JOptionPane.showInputDialog("Qual cliente voce quer consultar ? "));  
              cadastrarCliente.get(consultarCliente);
              JOptionPane.showMessageDialog(null, cadastrarCliente.toString());     
@@ -105,34 +111,27 @@ public class LojaProdutos {
                  }
               case 5: {
              int consultarProdutos = Integer.parseInt(JOptionPane.showInputDialog("Qual produto voce quer consultar ? "));  
-             JOptionPane.showMessageDialog(null,cadastrarProduto.get(consultarProdutos).toString());
+             cadastrarProduto.get(consultarProdutos);
+             JOptionPane.showMessageDialog(null,cadastrarProduto.toString());
              break;
               }
               case 6: {
              int consultarVendas = Integer.parseInt(JOptionPane.showInputDialog("Qual venda voce quer consultar ? "));  
-             JOptionPane.showMessageDialog(null,cadastrarVenda.get(consultarVendas).toString());
+             cadastrarVenda.get(consultarVendas);
+             JOptionPane.showMessageDialog(null,cadastrarVenda.toString());
              break;
        
               } 
-      }
+      
        }while(escMenu!=7);
        
-       String produto = "";
-   for(LojaSapato p : LojaSapato.values()){
-       produto += p.toString();
-   }
-   String escolha = JOptionPane.showInputDialog(produto);
-   String valorEscolha;
-   
-   for(LojaSapato p : LojaSapato.values()){
-       if( p.getNome().toUpperCase().contains(escolha.toUpperCase())){
-    JOptionPane.showMessageDialog(null,"Você escolheu o sapato: " + p.toString());
-  
-   
-       }  
        
        
-
-       }   
     }
-}
+
+       }
+    
+       }
+
+       
+       

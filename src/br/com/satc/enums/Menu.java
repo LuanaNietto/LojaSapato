@@ -52,6 +52,7 @@ public enum Menu {
     public int getOpcaoEscolha() {
         return opcaoEscolha;
     }
+   
 
     @Override
     public String toString() {
